@@ -16,6 +16,7 @@ Add the following secrets to your GitHub repository:
 
 - `DEVTO_API_KEY`: Your Dev.to API key
 - `HASHNODE_ACCESS_TOKEN`: Your Hashnode access token
+- `HASHNODE_PUBLICATION_ID`: Your Hashnode publication ID
 
 ### 2. Post Structure
 
