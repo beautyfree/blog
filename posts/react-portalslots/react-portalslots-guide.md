@@ -341,4 +341,3 @@ It’s ideal for apps where **layout regions are shared** but **logic lives deep
 > 💬 If your components often need to say "put this button in the header," this library will make your life much easier.
 
 👉 [GitHub: react-portalslots](https://github.com/beautyfree/react-portalslots)
-
