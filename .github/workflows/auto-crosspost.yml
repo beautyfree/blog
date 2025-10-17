@@ -27,6 +27,7 @@ jobs:
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
           HASHNODE_ACCESS_TOKEN: ${{ secrets.HASHNODE_ACCESS_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
         run: |
           cat > crosspost.config.json << EOF
           {
@@ -35,7 +36,8 @@ jobs:
                 "apiKey": "${DEVTO_API_KEY}"
               },
               "hashnode": {
-                "token": "${HASHNODE_ACCESS_TOKEN}"
+                "token": "${HASHNODE_ACCESS_TOKEN}",
+                "publicationId": "${HASHNODE_PUBLICATION_ID}"
               }
             }
           }
