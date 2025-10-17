@@ -180,8 +180,6 @@ export function App() {
 }
 ```
 
----
-
 ### 2. Conditional Toolbars
 
 Slots can render multiple fragments and handle conditional UI easily:
@@ -219,8 +217,6 @@ function Editor() {
   );
 }
 ```
-
----
 
 ### 3. Multi-Page Layout with React Router
 
@@ -276,8 +272,6 @@ function App() {
 
 Now every route defines its own layout content in place - no prop drilling.
 
----
-
 ### 4. Error Boundaries and Notifications
 
 Even within an error boundary, slots still render correctly:
@@ -324,8 +318,6 @@ function Layout({ children }) {
 - Multi-page apps with per-page layout customization.
 - Component libraries that need flexible "UI injection points".
 - Replacing global "UI stores" for layout coordination.
-
----
 
 ## 🧠 Summary
 
