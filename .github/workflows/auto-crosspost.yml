@@ -60,7 +60,7 @@ jobs:
               const frontmatter = yaml.load(frontmatterMatch[1]);
               if (frontmatter.crosspost === true || frontmatter.published === true) {
                 console.log(`Cross-posting ${file}`);
-                exec(`crosspost post "${file}" --config crosspost.config.json`, (error, stdout, stderr) => {
+                exec(`auto-crosspost post "${file}" --config crosspost.config.json`, (error, stdout, stderr) => {
                   if (error) {
                     console.error(`Error: ${error}`);
                     process.exit(1);
