@@ -35,7 +35,7 @@ jobs:
                 "apiKey": "${DEVTO_API_KEY}"
               },
               "hashnode": {
-                "accessToken": "${HASHNODE_ACCESS_TOKEN}"
+                "token": "${HASHNODE_ACCESS_TOKEN}"
               }
             }
           }
