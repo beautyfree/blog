@@ -2,11 +2,8 @@
 title: "react-portalslots"
 subtitle: "Colocating UI components without prop drilling"
 tags: ["react", "javascript", "slots", "portals"]
-published: true
+published: false
 ---
-
-
-# react-portalslots: colocate UI components without prop drilling
 
 Building React apps often involves a common problem: you need to render parts of your UI (buttons, toolbars, headers, etc.) into specific areas of your layout (`header`, `sidebar`, `footer`), **without drilling props** all the way up through the component tree or relying on global state.
 
