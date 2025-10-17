@@ -1,0 +1,82 @@
+name: Conditional CrossPost
+
+on:
+  push:
+    branches: [main]
+    paths: ['posts/**/*.md']
+
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install -g auto-crosspost
+          npm install js-yaml
+
+      - name: Setup Configuration
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_ACCESS_TOKEN: ${{ secrets.HASHNODE_ACCESS_TOKEN }}
+        run: |
+          cat > crosspost.config.json << EOF
+          {
+            "platforms": {
+              "devto": {
+                "apiKey": "$DEVTO_API_KEY"
+              },
+              "hashnode": {
+                "accessToken": "$HASHNODE_ACCESS_TOKEN",
+              }
+            }
+          }
+          EOF
+
+      - name: Cross-post new/modified posts
+        run: |
+          # Create a script to check frontmatter
+          cat > check_and_post.js << 'EOF'
+          const fs = require('fs');
+          const yaml = require('js-yaml');
+          const { exec } = require('child_process');
+
+          const file = process.argv[2];
+          if (!fs.existsSync(file)) process.exit(0);
+
+          const content = fs.readFileSync(file, 'utf8');
+          const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+
+          if (frontmatterMatch) {
+            try {
+              const frontmatter = yaml.load(frontmatterMatch[1]);
+              if (frontmatter.crosspost === true || frontmatter.published === true) {
+                console.log(`Cross-posting ${file}`);
+                exec(`crosspost post "${file}" --config crosspost.config.json`, (error, stdout, stderr) => {
+                  if (error) {
+                    console.error(`Error: ${error}`);
+                    process.exit(1);
+                  }
+                  console.log(stdout);
+                });
+              } else {
+                console.log(`Skipping ${file} (crosspost not enabled)`);
+              }
+            } catch (e) {
+              console.error(`Error parsing frontmatter in ${file}`);
+            }
+          }
+          EOF
+
+          # Check changed files
+          git diff --name-only HEAD~1 HEAD -- '*.md' '**/*.md' | while read file; do
+            node check_and_post.js "$file"
+          done
