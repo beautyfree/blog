@@ -32,10 +32,10 @@ jobs:
           {
             "platforms": {
               "devto": {
-                "apiKey": "$DEVTO_API_KEY"
+                "apiKey": "${DEVTO_API_KEY}"
               },
               "hashnode": {
-                "accessToken": "$HASHNODE_ACCESS_TOKEN",
+                "accessToken": "${HASHNODE_ACCESS_TOKEN}"
               }
             }
           }
