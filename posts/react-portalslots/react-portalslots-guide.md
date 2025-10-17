@@ -2,13 +2,8 @@
 title: "react-portalslots: colocate UI components without prop drilling"
 subtitle: "Keep related UI components together while rendering them anywhere in your layout"
 description: "Discover how react-portalslots enables true component colocation by eliminating prop drilling - teleport UI components directly into named layout slots using React Portals and Context, keeping related code together."
-tags: ["react", "javascript", "slots" "portals", "layout", "composition", "ui"]
-# canonical_url: "https://yourblog.com/react-portalslots-guide"
-# cover_image: "https://example.com/react-portals-cover.jpg"
-# series: "React Advanced Patterns"
-# slug: "react-portalslots-layout-composition"
+tags: ["react", "javascript", "slots", "portals", "layout", "composition", "ui"]
 published: true
-# publication_id: "your-publication-id"
 ---
 
 

@@ -72,6 +72,7 @@ jobs:
               }
             } catch (e) {
               console.error(`Error parsing frontmatter in ${file}`);
+              process.exit(1);
             }
           }
           EOF
